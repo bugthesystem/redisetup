@@ -4,12 +4,10 @@ Redis setup scripts
 
 ##How To
 
-redis.conf
-======================
+**redis.conf**
 tcp-backlog 65535
 
-sysctl.conf
-=====================
+**sysctl.conf**
 #Add
 vm.overcommit_memory=1                # Linux kernel overcommit memory setting
 vm.swappiness=0                       # turn off swapping
@@ -21,6 +19,4 @@ net.ipv4.tcp_syncookies=1             # enable syn cookied
 net.ipv4.tcp_tw_recycle=1             # recycle sockets quickly
 net.ipv4.tcp_max_syn_backlog=65535    # backlog setting
 net.core.somaxconn=65535              # up the number of connections per port
-#net.core.rmem_max=NUMBER             # up the receive buffer size
-#net.core.wmem_max=NUMBER             # up the buffer size for all connections
 fs.file-max=65535
