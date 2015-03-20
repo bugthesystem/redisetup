@@ -5,6 +5,10 @@ _**Edited Version**_
 
 ##How To
 
+```sh
+echo 65535 > /proc/sys/net/core/somaxconn
+```
+
 **redis.conf**
 ```sh
 tcp-backlog 65535
