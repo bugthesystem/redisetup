@@ -1,5 +1,5 @@
 # redisetup
-Redis setup scripts
+Redis + Monit setup scripts
 
 
 ##How To
