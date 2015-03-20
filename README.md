@@ -28,3 +28,22 @@ net.ipv4.tcp_max_syn_backlog=65535    # backlog setting
 net.core.somaxconn=65535              # up the number of connections per port
 fs.file-max=65535
 ```
+
+**/etc/security/limits.conf**
+```sh
+redis soft nofile 65535
+redis hard nofile 65535
+```
+add following line to
+```sh
+session required pam_limits.so
+```
+/etc/pam.d/common-session
+/etc/pam.d/common-session-noninteractive
+
+**/etc/init.d/redis-server**
+```sh
+sudo sh -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+ulimit -n 65535
+ulimit -n >> /var/log/ulimit.log #Not required!
+```
