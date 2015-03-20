@@ -1,4 +1,4 @@
-# redisetup
+# redis + monit setup
 Redis + Monit setup scripts
 
 
