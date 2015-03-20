@@ -1,5 +1,6 @@
 # redis + sentinel + monit setup
 Redis + Sentinel + Monit setup scripts
+> ##It is not production ready configuration yet! Work in progress..##
 
 _**Edited Version**_
 
