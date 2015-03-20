@@ -1,5 +1,5 @@
-# redis + monit setup
-Redis + Monit setup scripts
+# redis + sentinel + monit setup
+Redis + Sentinel + Monit setup scripts
 
 _**Edited Version**_
 
