@@ -9,10 +9,10 @@ REDIS_INSTANCE_PORT=6379 #default Master port is 6379
 REDIS_MASTER_IP=127.0.0.1
 REDIS_MASTER_PORT=6379
 
-if [ ! -f redis-node-setup.sh ]
+if [ ! -f member-setup.sh ]
 then
         wget https://github.com/ziyasal/redisetup/raw/master/member-setup.sh
 fi
 
 
-sudo sh redis-node-setup.sh slave $REDIS_VER $UPDATE_LINUX_PACKAGES $REDIS_INSTANCE_NAME $REDIS_INSTANCE_PORT $REDIS_MASTER_IP $REDIS_MASTER_PORT
+sudo sh member-setup.sh slave $REDIS_VER $UPDATE_LINUX_PACKAGES $REDIS_INSTANCE_NAME $REDIS_INSTANCE_PORT $REDIS_MASTER_IP $REDIS_MASTER_PORT
