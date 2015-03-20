@@ -38,6 +38,16 @@ sudo sh -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
 ulimit -n 65535
 ulimit -n >> /var/log/ulimit.log #Not required!
 ```
+
+##REDIS SENTINEL
+_**install**_
+```sh
+wget https://raw.githubusercontent.com/ziyasal/redisetup/master/sentinel.sh
+```
+_**Run**_
+```sh
+sudo sh sentinel.sh
+```
 ##SYSTEM SIDE SETTINGS
 _**sysctl.conf**_
 ```sh
