@@ -6,16 +6,23 @@ _**Edited Version**_
 
 ###REDIS
 _**Install Redis**_
+
+**For Master**
 ```sh
 mkdir redisetup
 cd redisetup
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/master.sh
+sudo sh master.sh #Run install script
 ```
 
-_**Run install script**_
+**For Slave**
 ```sh
-sudo sh master.sh
+mkdir redisetup
+cd redisetup
+wget https://raw.githubusercontent.com/ziyasal/redisetup/master/member.sh
+sudo sh member.sh #Run install script
 ```
+
 _**Set somaxconn**_
 ```sh
 echo 65535 > /proc/sys/net/core/somaxconn
@@ -44,11 +51,9 @@ ulimit -n >> /var/log/ulimit.log #Not required!
 _**install**_
 ```sh
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/sentinel.sh
+sudo sh sentinel.sh  #Run install script
 ```
-_**Run**_
-```sh
-sudo sh sentinel.sh
-```
+
 ##SYSTEM SIDE SETTINGS
 _**sysctl.conf**_
 ```sh
