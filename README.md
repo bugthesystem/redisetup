@@ -8,6 +8,15 @@ _**Edited Version**_
 _**Install Redis**_
 
 **For Master**
+Edit ```master.sh``` file to set configurations (redis version,instance name, port);
+```sh
+# Defaults
+REDIS_VER=2.8.19
+UPDATE_LINUX_PACKAGES=false
+REDIS_INSTANCE_NAME=redis-server
+REDIS_INSTANCE_PORT=6379
+```
+
 ```sh
 mkdir redisetup
 cd redisetup
@@ -16,6 +25,16 @@ sudo sh master.sh #Run install script
 ```
 
 **For Slave**
+Edit ```member.sh``` file to set configurations (redis version,instance name, port, master ip, master port);
+```sh
+REDIS_VER=2.8.19
+UPDATE_LINUX_PACKAGES=false      #true|false
+REDIS_INSTANCE_NAME=redis-server
+REDIS_INSTANCE_PORT=6379         #Set another one if master node is on the same host
+REDIS_MASTER_IP=127.0.0.1
+REDIS_MASTER_PORT=6379
+```
+
 ```sh
 mkdir redisetup
 cd redisetup
