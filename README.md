@@ -5,9 +5,8 @@ Redis + Sentinel + Monit setup scripts
 _**Edited Version**_
 
 ###REDIS
-_**Install Redis**_
 
-**For Master**
+**To Install Master**  
 Edit ```master.sh``` file to set configurations (redis version,instance name, port);
 ```sh
 # Defaults
@@ -24,9 +23,10 @@ wget https://raw.githubusercontent.com/ziyasal/redisetup/master/master.sh
 sudo sh master.sh #Run install script
 ```
 
-**For Slave**
+**To Install Slave**  
 Edit ```member.sh``` file to set configurations (redis version,instance name, port, master ip, master port);
 ```sh
+# Defaults
 REDIS_VER=2.8.19
 UPDATE_LINUX_PACKAGES=false      #true|false
 REDIS_INSTANCE_NAME=redis-server
