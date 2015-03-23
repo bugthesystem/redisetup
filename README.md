@@ -3,7 +3,7 @@
     * [Redis Master/Slave](#redis-masterslave)
     * [Redis Sentinel](#redis-sentinel)
     * [Monit](#monit)
-        * [Apply Redis and Sentinel Configuration into Monit](#apply-redis-and-sentinel-configuration-into-monit)
+    * [Apply Redis and Sentinel Configurations into Monit](#apply-redis-and-sentinel-configurations-into-monit)
 * [System Side Settings](#system-side-settings)
 * [Shortcuts](#shortcuts)
 
@@ -98,7 +98,7 @@ set httpd port 8081 and
     allow localhost        # allow localhost to connect to the server and
     allow admin:monit      # require user "admin" with password "monit"
 ```
-###Apply Redis and Sentinel Configuration into Monit
+###Apply Redis and Sentinel Configurations into Monit
 _**Create redis.conf**_
 ```sh
 nano /etc/monit/conf.d/redis.conf
