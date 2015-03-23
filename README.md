@@ -1,6 +1,8 @@
 # Index
 * [Redis + Sentinel + Monit Setup](#redis--sentinel--monit-setup)
 * [Redis Master/Slave](#redis)
+    * [To Install Master](#to-install-master)
+    * [To Install Slave]($to-install-slave)
 * [Redis Sentinel](#redis-sentinel)
 * [System Side Settings](#system-side-settings)
 * [Monit](#monit)
@@ -112,7 +114,7 @@ to
 /etc/pam.d/common-session
 /etc/pam.d/common-session-noninteractive
 ```
-###MONIT
+###Monit
 _**install**_
 ```sh
 sudo apt-get install monit
