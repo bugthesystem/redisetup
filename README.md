@@ -6,7 +6,7 @@
 * [Monit](#monit)
 * [Apply Redis and Sentinel Configuration into Monit](#redis--sentinel--monit)
 * [Shortcuts](#shortcuts)
-* 
+
 # Redis + Sentinel + Monit Setup
 Redis + Sentinel + Monit Setup Scripts
 > ##It is not production ready configuration yet! Work in progress..##
