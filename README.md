@@ -1,13 +1,19 @@
 # Index
-* [redis + sentinel + monit setup](#redis+sentinel+monit)
-
-# redis + sentinel + monit setup
-Redis + Sentinel + Monit setup scripts
+* [Redis + Sentinel + Monit Setup](#redis--sentinel--monit-setup)
+* [Redis Master/Slave](#redis)
+* [Redis Sentinel](#redis-sentinel)
+* [System Side Settings](#system-side-settings)
+* [Monit](#monit)
+* [Apply Redis and Sentinel Configuration into Monit](#redis--sentinel--monit)
+* [Shortcuts](#shortcuts)
+* 
+# Redis + Sentinel + Monit Setup
+Redis + Sentinel + Monit Setup Scripts
 > ##It is not production ready configuration yet! Work in progress..##
 
 _**Edited Version**_
 
-###REDIS
+###Redis Master/Slave
 
 **To Install Master**  
 Edit ```master.sh``` file to set configurations (redis version,instance name, port);
@@ -69,14 +75,14 @@ ulimit -n 65535
 ulimit -n >> /var/log/ulimit.log #Not required!
 ```
 
-##REDIS SENTINEL
+##Redis Sentinel
 _**install**_
 ```sh
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/sentinel.sh
 sudo sh sentinel.sh  #Run install script
 ```
 
-##SYSTEM SIDE SETTINGS
+##System Side Settings
 _**sysctl.conf**_
 ```sh
 vm.overcommit_memory=1                # Linux kernel overcommit memory setting
@@ -122,12 +128,12 @@ set httpd port 8081 and
     allow localhost        # allow localhost to connect to the server and
     allow admin:monit      # require user "admin" with password "monit"
 ```
-###REDIS + SENTINEL + MONIT
+###Apply Redis and Sentinel Configuration into Monit
 _**Create redis.conf**_
 ```sh
 nano /etc/monit/conf.d/redis.conf
 ```
-Add followin settings for more options [monit documentation](https://mmonit.com/monit/documentation/)
+Add following settings for more options [monit documentation](https://mmonit.com/monit/documentation/)
 ```sh
 #Default settings
 #watch by pid
@@ -154,7 +160,7 @@ check process redis-sentinel
     if 5 restarts within 5 cycles then timeout
 ```
 
-###SHORTCUTS
+###Shortcuts
 
 After executing the command shown below 
 
