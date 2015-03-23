@@ -150,3 +150,30 @@ check process redis-sentinel
     if failed host 127.0.0.1 port 26379 then restart
     if 5 restarts within 5 cycles then timeout
 ```
+
+###SHORTCUTS
+
+After executing the command shown below 
+
+```sh
+monit monitor all
+```
+
+Now you can keep track of redis server and sentinel by monit 
+
+```sh
+monit status
+```
+
+Get Master/Slave replication information
+
+```sh
+redis-cli -p 6379 info replication
+```
+
+Get Sentinel information
+
+```sh
+redis-cli -p 26379 info sentinel
+```
+
