@@ -75,7 +75,7 @@ ulimit -n 65535
 ulimit -n >> /var/log/ulimit.log #Not required!
 ```
 
-##Redis Sentinel
+###Redis Sentinel
 _**install**_
 ```sh
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/sentinel.sh
