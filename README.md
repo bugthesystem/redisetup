@@ -166,10 +166,10 @@ monit status
 Other useful commands 
 
 ```sh
-# Get information of redis server
-redis-cli info replication
+# Check redis server
+redis-cli -p 6379 info replication
 
-# Get information of redis sentinel
-redis-cli info sentinel
+# Check redis sentinel
+redis-cli -p 26379 info sentinel
 ```
 
