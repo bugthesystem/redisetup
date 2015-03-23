@@ -1,8 +1,6 @@
 # Index
 * [Redis + Sentinel + Monit Setup](#redis--sentinel--monit-setup)
-* [Redis Master/Slave](#redis)
-    * [To Install Master](#to-install-master)
-    * [To Install Slave]($to-install-slave)
+* [Redis Master/Slave](#redis-masterslave)
 * [Redis Sentinel](#redis-sentinel)
 * [System Side Settings](#system-side-settings)
 * [Monit](#monit)
