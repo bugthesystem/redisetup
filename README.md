@@ -151,6 +151,8 @@ check process redis-sentinel
     if 5 restarts within 5 cycles then timeout
 ```
 
+###SHORTCUTS
+
 After executing the command shown below 
 
 ```sh
@@ -163,13 +165,15 @@ Now you can keep track of redis server and sentinel by monit
 monit status
 ```
 
-Other useful commands 
+Get Master/Slave replication information
 
 ```sh
-# Check redis server
 redis-cli -p 6379 info replication
+```
 
-# Check redis sentinel
+Get Sentinel information
+
+```sh
 redis-cli -p 26379 info sentinel
 ```
 
