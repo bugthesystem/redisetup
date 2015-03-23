@@ -4,7 +4,7 @@
 * [Redis Sentinel](#redis-sentinel)
 * [System Side Settings](#system-side-settings)
 * [Monit](#monit)
-* [Apply Redis and Sentinel Configuration into Monit](#redis--sentinel--monit)
+* [Apply Redis and Sentinel Configuration into Monit](#apply-redis-and-sentinel-configuration-into-monit)
 * [Shortcuts](#shortcuts)
 
 # Redis + Sentinel + Monit Setup
