@@ -168,7 +168,7 @@ echo " 2: ... DAEMON=/usr/local/bin/$REDIS_INSTANCE_NAME"
 
 if [ ! -f init_d_redis-server ]
 then
-	wget https://github.com/ziyasal/redis-setup/raw/master/init_d_redis-server
+	wget https://github.com/ziyasal/redisetup/raw/master/init_d_redis-server
 fi
 
 sudo sed -e "s/^DAEMON_ARGS=\/etc\/redis\/redis\.conf$/DAEMON_ARGS=\/etc\/$REDIS_INSTANCE_NAME\/redis\.conf/" -e "s/^DAEMON=\/usr\/local\/bin\/redis-server$/DAEMON=\/usr\/local\/bin\/$REDIS_INSTANCE_NAME/" init_d_redis-server > redis-server_tmp
