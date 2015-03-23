@@ -1,5 +1,5 @@
 # Index
-* [redis + sentinel + monit setup](#redis-+-sentinel-+-monit-setup)
+* [redis + sentinel + monit setup](#redis-sentinel)
 
 # redis + sentinel + monit setup
 Redis + Sentinel + Monit setup scripts
