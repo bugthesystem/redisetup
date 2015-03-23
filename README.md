@@ -1,10 +1,10 @@
 # Index
 * [Redis + Sentinel + Monit Setup](#redis--sentinel--monit-setup)
-* [Redis Master/Slave](#redis-masterslave)
-* [Redis Sentinel](#redis-sentinel)
+    * [Redis Master/Slave](#redis-masterslave)
+    * [Redis Sentinel](#redis-sentinel)
+    * [Monit](#monit)
+        * [Apply Redis and Sentinel Configuration into Monit](#apply-redis-and-sentinel-configuration-into-monit)
 * [System Side Settings](#system-side-settings)
-* [Monit](#monit)
-* [Apply Redis and Sentinel Configuration into Monit](#apply-redis-and-sentinel-configuration-into-monit)
 * [Shortcuts](#shortcuts)
 
 # Redis + Sentinel + Monit Setup
@@ -82,36 +82,6 @@ wget https://raw.githubusercontent.com/ziyasal/redisetup/master/sentinel.sh
 sudo sh sentinel.sh  #Run install script
 ```
 
-##System Side Settings
-_**sysctl.conf**_
-```sh
-vm.overcommit_memory=1                # Linux kernel overcommit memory setting
-vm.swappiness=0                       # turn off swapping
-net.ipv4.tcp_sack=1                   # enable selective acknowledgements
-net.ipv4.tcp_timestamps=1             # needed for selective acknowledgements
-net.ipv4.tcp_window_scaling=1         # scale the network window
-net.ipv4.tcp_congestion_control=cubic # better congestion algorythm
-net.ipv4.tcp_syncookies=1             # enable syn cookied
-net.ipv4.tcp_tw_recycle=1             # recycle sockets quickly
-net.ipv4.tcp_max_syn_backlog=65535    # backlog setting
-net.core.somaxconn=65535              # up the number of connections per port
-fs.file-max=65535
-```
-
-_**/etc/security/limits.conf**_
-```sh
-redis soft nofile 65535
-redis hard nofile 65535
-```
-Add following line
-```sh
-session required pam_limits.so
-```
-to
-```sh
-/etc/pam.d/common-session
-/etc/pam.d/common-session-noninteractive
-```
 ###Monit
 _**install**_
 ```sh
@@ -158,6 +128,37 @@ check process redis-sentinel
     stop program = "/etc/init.d/redis-sentinel stop"
     if failed host 127.0.0.1 port 26379 then restart
     if 5 restarts within 5 cycles then timeout
+```
+
+##System Side Settings
+_**sysctl.conf**_
+```sh
+vm.overcommit_memory=1                # Linux kernel overcommit memory setting
+vm.swappiness=0                       # turn off swapping
+net.ipv4.tcp_sack=1                   # enable selective acknowledgements
+net.ipv4.tcp_timestamps=1             # needed for selective acknowledgements
+net.ipv4.tcp_window_scaling=1         # scale the network window
+net.ipv4.tcp_congestion_control=cubic # better congestion algorythm
+net.ipv4.tcp_syncookies=1             # enable syn cookied
+net.ipv4.tcp_tw_recycle=1             # recycle sockets quickly
+net.ipv4.tcp_max_syn_backlog=65535    # backlog setting
+net.core.somaxconn=65535              # up the number of connections per port
+fs.file-max=65535
+```
+
+_**/etc/security/limits.conf**_
+```sh
+redis soft nofile 65535
+redis hard nofile 65535
+```
+Add following line
+```sh
+session required pam_limits.so
+```
+to
+```sh
+/etc/pam.d/common-session
+/etc/pam.d/common-session-noninteractive
 ```
 
 ###Shortcuts
