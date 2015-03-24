@@ -1,10 +1,19 @@
-# redis + sentinel + monit setup
-Redis + Sentinel + Monit setup scripts
+# Index
+* [Redis + Sentinel + Monit Setup](#redis--sentinel--monit-setup)
+    * [Redis Master/Slave](#redis-masterslave)
+    * [Redis Sentinel](#redis-sentinel)
+    * [Monit](#monit)
+    * [Apply Redis and Sentinel Configurations into Monit](#apply-redis-and-sentinel-configurations-into-monit)
+* [System Side Settings](#system-side-settings)
+* [Shortcuts](#shortcuts)
+
+# Redis + Sentinel + Monit Setup
+Redis + Sentinel + Monit Setup Scripts
 > ##It is not production ready configuration yet! Work in progress..##
 
 _**Edited Version**_
 
-###REDIS
+###Redis Master/Slave
 
 **To Install Master**  
 Edit ```master.sh``` file to set configurations (redis version,instance name, port);
@@ -66,14 +75,62 @@ ulimit -n 65535
 ulimit -n >> /var/log/ulimit.log #Not required!
 ```
 
-##REDIS SENTINEL
+###Redis Sentinel
 _**install**_
 ```sh
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/sentinel.sh
 sudo sh sentinel.sh  #Run install script
 ```
 
-##SYSTEM SIDE SETTINGS
+###Monit
+_**install**_
+```sh
+sudo apt-get install monit
+```
+_**update monit config file**_
+```sh
+nano /etc/monit/monitrc
+```
+_Add or update httpd settings_
+```sh
+set httpd port 8081 and
+    use address localhost  # only accept connection from localhost
+    allow localhost        # allow localhost to connect to the server and
+    allow admin:monit      # require user "admin" with password "monit"
+```
+###Apply Redis and Sentinel Configurations into Monit
+_**Create redis.conf**_
+```sh
+nano /etc/monit/conf.d/redis.conf
+```
+Add following settings for more options [monit documentation](https://mmonit.com/monit/documentation/)
+```sh
+#Default settings
+#watch by pid
+check process redis-server
+    with pidfile "/var/run/redis.pid"
+    start program = "/etc/init.d/redis-server start"
+    stop program = "/etc/init.d/redis-server stop"
+    if failed host 127.0.0.1 port 6379 then restart
+    if 5 restarts within 5 cycles then timeout
+```
+
+_**Create sentinel.conf**_
+```sh
+nano /etc/monit/conf.d/redis-sentinel.conf
+```
+Add following lines
+```sh
+#watch by process name TODO: pid file
+check process redis-sentinel
+    matching "redis-sentinel"
+    start program = "/etc/init.d/redis-sentinel start"
+    stop program = "/etc/init.d/redis-sentinel stop"
+    if failed host 127.0.0.1 port 26379 then restart
+    if 5 restarts within 5 cycles then timeout
+```
+
+##System Side Settings
 _**sysctl.conf**_
 ```sh
 vm.overcommit_memory=1                # Linux kernel overcommit memory setting
@@ -103,50 +160,30 @@ to
 /etc/pam.d/common-session
 /etc/pam.d/common-session-noninteractive
 ```
-###MONIT
-_**install**_
+
+###Shortcuts
+
+After executing the command shown below 
+
 ```sh
-sudo apt-get install monit
-```
-_**update monit config file**_
-```sh
-nano /etc/monit/monitrc
-```
-_Add or update httpd settings_
-```sh
-set httpd port 8081 and
-    use address localhost  # only accept connection from localhost
-    allow localhost        # allow localhost to connect to the server and
-    allow admin:monit      # require user "admin" with password "monit"
-```
-###REDIS + SENTINEL + MONIT
-_**Create redis.conf**_
-```sh
-nano /etc/monit/conf.d/redis.conf
-```
-Add followin settings for more options [monit documentation](https://mmonit.com/monit/documentation/)
-```sh
-#Default settings
-#watch by pid
-check process redis-server
-    with pidfile "/var/run/redis.pid"
-    start program = "/etc/init.d/redis-server start"
-    stop program = "/etc/init.d/redis-server stop"
-    if failed host 127.0.0.1 port 6379 then restart
-    if 5 restarts within 5 cycles then timeout
+monit monitor all
 ```
 
-_**Create sentinel.conf**_
+Now you can keep track of redis server and sentinel by monit 
+
 ```sh
-nano /etc/monit/conf.d/redis-sentinel.conf
+monit status
 ```
-Add following lines
+
+Get Master/Slave replication information
+
 ```sh
-#watch by process name TODO: pid file
-check process redis-sentinel
-    matching "redis-sentinel"
-    start program = "/etc/init.d/redis-sentinel start"
-    stop program = "/etc/init.d/redis-sentinel stop"
-    if failed host 127.0.0.1 port 26379 then restart
-    if 5 restarts within 5 cycles then timeout
+redis-cli -p 6379 info replication
 ```
+
+Get Sentinel information
+
+```sh
+redis-cli -p 26379 info sentinel
+```
+
