@@ -1,4 +1,4 @@
-# Index
+# Table of Contents
 * [Redis + Sentinel + Monit Setup](#redis--sentinel--monit-setup)
     * [Redis Master/Slave](#redis-masterslave)
     * [Redis Sentinel](#redis-sentinel)
