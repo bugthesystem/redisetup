@@ -9,7 +9,7 @@
 
 # Redis + Sentinel + Monit Setup
 Redis + Sentinel + Monit Setup Scripts
-> ## This configuration is now using small and middle sized production environments. Using this in production is at your own risk.##
+> _This configuration is now using small and middle sized production environments. Using this in production is at your own risk._
 
 _**Edited Version**_
 
