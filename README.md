@@ -62,15 +62,17 @@ echo 65535 > /proc/sys/net/core/somaxconn
 _**redis.conf**_   [for more detail](http://redis.io/topics/config)
 ```sh
 tcp-backlog 65535
-#**TODO**
-#To dump the dataset every 15 minutes (900 seconds) if at least one key changed, you can say:
-#save 900 1
-#**TODO**
-#Redis instantly writes to the log file so even if your machine crashes, it can still recover and have the latest data. #Similar to RDB, AOF log is represented as a regular file at var/lib/redis called appendonly.aof (by default).
-#appendonly yes
-#**TODO**
-#To tell OS to really really write the data to the disk, Redis needs to call the fsync() function right after the write call, #which can be slow.
-#appendfsync everysec
+
+# **TODO**
+# To dump the dataset every 15 minutes (900 seconds) if at least one key changed, you can say:
+# save 900 1
+# **TODO**
+# Redis instantly writes to the log file so even if your machine crashes, it can still recover and have the latest data. #Similar to RDB, AOF log is represented as a regular file at var/lib/redis called appendonly.aof (by default).
+# appendonly yes
+
+# **TODO**
+# To tell OS to really really write the data to the disk, Redis needs to call the fsync() function right after the write call, #which can be slow.
+# appendfsync everysec
 ```
 _**/etc/init.d/redis-server**_
 ```sh
@@ -79,14 +81,14 @@ ulimit -n 65535
 ulimit -n >> /var/log/ulimit.log #Not required!
 ```
 
-###Redis Sentinel
+### Redis Sentinel
 _**install**_
 ```sh
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/sentinel.sh
 sudo sh sentinel.sh  #Run install script
 ```
 
-###Monit
+### Monit
 _**install**_
 ```sh
 sudo apt-get install monit
@@ -102,7 +104,7 @@ set httpd port 8081 and
     allow localhost        # allow localhost to connect to the server and
     allow admin:monit      # require user "admin" with password "monit"
 ```
-###Apply Redis and Sentinel Configurations into Monit
+### Apply Redis and Sentinel Configurations into Monit
 _**Create redis.conf**_
 ```sh
 nano /etc/monit/conf.d/redis.conf
@@ -134,7 +136,7 @@ check process redis-sentinel
     if 5 restarts within 5 cycles then timeout
 ```
 
-##System Side Settings
+## System Side Settings
 _**sysctl.conf**_
 ```sh
 vm.overcommit_memory=1                # Linux kernel overcommit memory setting
@@ -165,7 +167,7 @@ to
 /etc/pam.d/common-session-noninteractive
 ```
 
-###Shortcuts
+### Shortcuts
 
 After executing the command shown below 
 
