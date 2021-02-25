@@ -1,6 +1,6 @@
 # Table of Contents
 * [Redis + Sentinel + Monit Setup](#redis--sentinel--monit-setup)
-    * [Redis Master/Slave](#redis-masterslave)
+    * [Redis Primary/Replica](#redis-primaryreplica)
     * [Redis Sentinel](#redis-sentinel)
     * [Monit](#monit)
     * [Apply Redis and Sentinel Configurations into Monit](#apply-redis-and-sentinel-configurations-into-monit)
@@ -13,9 +13,9 @@ Redis + Sentinel + Monit Setup Scripts
 
 _**Edited Version**_
 
-###Redis Master/Slave
+### Redis Primary/Replica
 
-**To Install Master**  
+**To Install Primary**  
 Edit ```master.sh``` file to set configurations (redis version,instance name, port);
 ```sh
 # Defaults
@@ -29,11 +29,13 @@ REDIS_INSTANCE_PORT=6379
 mkdir redisetup
 cd redisetup
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/master.sh
-sudo sh master.sh #Run install script
+
+# Run install script
+sudo sh master.sh 
 ```
 
-**To Install Slave**  
-Edit ```member.sh``` file to set configurations (redis version,instance name, port, master ip, master port);
+**To Install Replica**  
+Edit ```member.sh``` file to set configurations (redis version,instance name, port, primary ip, primary port);
 ```sh
 # Defaults
 REDIS_VER=2.8.19
@@ -48,7 +50,9 @@ REDIS_MASTER_PORT=6379
 mkdir redisetup
 cd redisetup
 wget https://raw.githubusercontent.com/ziyasal/redisetup/master/member.sh
-sudo sh member.sh #Run install script
+
+# Run install script
+sudo sh member.sh 
 ```
 
 _**Set somaxconn**_
@@ -175,7 +179,7 @@ Now you can keep track of redis server and sentinel by monit
 monit status
 ```
 
-Get Master/Slave replication information
+Get Primary/Replica replication information
 
 ```sh
 redis-cli -p 6379 info replication
